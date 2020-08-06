@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">GitRepoList</string>
+    <string name="app_name">Git Repositories</string>
     <string name="error_api_general">Cheque sua conexão.</string>
     <string name="retry">Retry</string>
 </resources>

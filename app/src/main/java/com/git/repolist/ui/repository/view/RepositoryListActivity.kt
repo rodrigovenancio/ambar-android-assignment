@@ -4,7 +4,6 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
@@ -17,7 +16,6 @@ import com.git.repolist.databinding.ActivityRepositoryListBinding
 import com.git.repolist.ui.repository.adapter.RepositoryListAdapter
 import com.git.repolist.ui.repository.viewmodel.RepositoryViewModel
 import kotlinx.android.synthetic.main.activity_repository_list.*
-
 
 class RepositoryListActivity : AppCompatActivity() {
 
