@@ -10,6 +10,7 @@ import io.reactivex.schedulers.Schedulers
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
+import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Singleton
 
@@ -37,14 +38,6 @@ object NetworkModule {
     fun provideOkHttpClient(): OkHttpClient {
         val httpClient = OkHttpClient.Builder()
         httpClient.addInterceptor(AuthInterceptor())
-
-        /*if (BuildConfig.DEBUG && RESTMockServer.getUrl() != null) {
-            httpClient.addInterceptor(BaseUrlChangingInterceptor.get())
-            httpClient.sslSocketFactory(RESTMockServer.getSSLSocketFactory(), RESTMockServer.getTrustManager())
-        } else {
-           httpClient.addInterceptor(AuthInterceptor())
-        }*/
-
         return httpClient.build()
     }
 
@@ -59,7 +52,7 @@ object NetworkModule {
         return Retrofit.Builder()
             .baseUrl(BASE_URL)
             .client(provideOkHttpClient())
-            .addConverterFactory(MoshiConverterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io()))
             .build()
     }
