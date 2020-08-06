@@ -84,8 +84,8 @@ class RepositoryListActivity : AppCompatActivity() {
     }
 
     private fun repositoryClicked(repository : Repository) {
-        val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(repository.htmlUrl))
-        startActivity(browserIntent)
+         val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(repository.htmlUrl))
+         startActivity(browserIntent)
     }
 
     /**
