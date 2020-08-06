@@ -9,5 +9,5 @@ data class Repository(
     val fullName: String? = null,
     @SerializedName("html_url")
     val htmlUrl: String? = null,
-    val owner: Owner? = null
+    val owner: Owner
 )

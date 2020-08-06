@@ -15,6 +15,7 @@ class RepositoryListAdapter(private val products: ArrayList<Repository>, private
         fun bind(repository: Repository, clickListener: (Repository) -> Unit) {
             itemView.apply {
                 textViewRepositoryName.text = repository.name
+                textViewRepositoryOwner.text = repository.owner.login
                 setOnClickListener { clickListener(repository) }
             }
         }
