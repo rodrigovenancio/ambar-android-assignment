@@ -1,11 +1,14 @@
 package com.git.repolist.injection.module
 
+import com.git.repolist.BuildConfig
 import com.git.repolist.data.api.AuthInterceptor
+import com.git.repolist.data.api.BaseUrlChangingInterceptor
 import com.git.repolist.data.api.RepositoryApi
 import com.git.repolist.util.BASE_URL
 import dagger.Module
 import dagger.Provides
 import dagger.Reusable
+import io.appflate.restmock.RESTMockServer
 import io.reactivex.schedulers.Schedulers
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -38,6 +41,12 @@ object NetworkModule {
     fun provideOkHttpClient(): OkHttpClient {
         val httpClient = OkHttpClient.Builder()
         httpClient.addInterceptor(AuthInterceptor())
+
+        if (BuildConfig.DEBUG && RESTMockServer.getUrl() != null) {
+            httpClient.addInterceptor(BaseUrlChangingInterceptor.get())
+            httpClient.sslSocketFactory(RESTMockServer.getSSLSocketFactory(), RESTMockServer.getTrustManager())
+        }
+
         return httpClient.build()
     }
 

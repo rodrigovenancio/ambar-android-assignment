@@ -2,6 +2,7 @@ package com.git.repolist.data.api;
 
 import java.io.IOException;
 
+import io.appflate.restmock.RESTMockServer;
 import okhttp3.HttpUrl;
 import okhttp3.Interceptor;
 import okhttp3.Request;
@@ -22,18 +23,14 @@ public class BaseUrlChangingInterceptor implements Interceptor {
     private BaseUrlChangingInterceptor() {
     }
 
-
-    public void setInterceptor(String url) {
-        httpUrl = HttpUrl.parse(url);
-    }
-
     @Override
     public Response intercept(Chain chain) throws IOException {
         Request original = chain.request();
+        String mockUrl = RESTMockServer.getUrl();
 
-        if(httpUrl != null) {
+        if(mockUrl != null) {
             original = original.newBuilder()
-                    .url(httpUrl)
+                    .url(mockUrl + "/repositories")
                     .build();
         }
         return chain.proceed(original);
