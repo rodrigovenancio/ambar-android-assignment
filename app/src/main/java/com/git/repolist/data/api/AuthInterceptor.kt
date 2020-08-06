@@ -12,7 +12,7 @@ class AuthInterceptor() : Interceptor {
     @Throws(IOException::class)
     override fun intercept(chain: Interceptor.Chain): Response {
         val request = chain.request().newBuilder()
-            .addHeader("Accept", "application/vnd.github.v3+json").build()
+            .addHeader("Accept", "application/json").build()
         return chain.proceed(request)
     }
 }

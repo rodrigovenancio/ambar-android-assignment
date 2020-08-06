@@ -13,5 +13,5 @@ interface RepositoryApi {
      * Get the details of the given Product from the API
      */
     @GET("repositories")
-    fun getRepositories(@Query("since") since: String): Observable<Repository>
+    fun getRepositories(): Observable<ArrayList<Repository>>
 }
